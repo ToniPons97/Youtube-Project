@@ -1,6 +1,7 @@
 import os
 import pickle
 import google.oauth2.credentials
+import main
 
 
 from googleapiclient.discovery import build
@@ -44,7 +45,6 @@ channelId = []
 channelTitle = []
 categoryId = []
 viewCount = []
-favoriteCount = []
 likeCount = []
 dislikeCount = []
 commentCount = []
@@ -61,7 +61,6 @@ def search_videos_by_keyword(service, **kwargs):
         channelId.append(stats['items'][0]['snippet']['channelId']) 
         channelTitle.append(stats['items'][0]['snippet']['channelTitle']) 
         categoryId.append(stats['items'][0]['snippet']['categoryId']) 
-        favoriteCount.append(stats['items'][0]['statistics']['favoriteCount'])
         viewCount.append(stats['items'][0]['statistics']['viewCount'])
 
         try:
@@ -86,13 +85,13 @@ def search_videos_by_keyword(service, **kwargs):
     youtube_dict = {'channelId': channelId,'channelTitle': channelTitle,
                     'categoryId':categoryId,'title':title,'videoId':videoId,
                     'viewCount':viewCount,'likeCount':likeCount,'dislikeCount':dislikeCount,
-                    'commentCount':commentCount,'favoriteCount':favoriteCount}
+                    'commentCount':commentCount}
  
     return youtube_dict
 
 
-keyword = input('Enter a keyword: ')
-search_videos_by_keyword(service, q=keyword, part='id,snippet', eventType='completed', type='video', order='viewCount')
+#keyword = 
+#search_videos_by_keyword(service, q=keyword, part='id,snippet', eventType='completed', type='video', order='viewCount')
 
 
 
