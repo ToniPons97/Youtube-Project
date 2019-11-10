@@ -58,12 +58,16 @@ def search_videos_by_keyword(service, **kwargs):
     for item in results['items']:
         title.append(item['snippet']['title'])
         videoId.append(item['id']['videoId'])
-        stats = service.videos().list(
-                part='statistics, snippet',
-                id=results['id']['videoId']).execute()
-
+        stats = service.videos().list(part='statistics, snippet', id=item['id']['videoId']).execute()
+        
+        channelId.append(stats['items'][0]['snippet']['channelId']) 
+        channelTitle.append(stats['items'][0]['snippet']['channelTitle']) 
+        categoryId.append(stats['items'][0]['snippet']['categoryId']) 
+        favoriteCount.append(stats['items'][0]['statistics']['favoriteCount'])
+        viewCount.append(stats['items'][0]['statistics']['viewCount'])
+    print(title, viewCount)
 keyword = input('Enter a keyword: ')
-search_videos_by_keyword(service, q=keyword, part='id,snippet', eventType='completed', type='video')
+search_videos_by_keyword(service, q=keyword, part='id,snippet', eventType='completed', type='video', order='viewCount')
 
 
 
