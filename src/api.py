@@ -39,24 +39,24 @@ def get_authenticated_service():
 
 service = get_authenticated_service()
 
-title = []
-videoId = []
-channelId = []
-channelTitle = []
-categoryId = []
-viewCount = []
-likeCount = []
-dislikeCount = []
-commentCount = []
 
 
 
 def search_videos_by_keyword(service, **kwargs):
+    title = []
+    videoId = []
+    channelId = []
+    channelTitle = []
+    categoryId = []
+    viewCount = []
+    likeCount = []
+    dislikeCount = []
+    commentCount = []
     results = service.search().list(**kwargs).execute()
     for item in results['items']:
         title.append(item['snippet']['title'])
         videoId.append(item['id']['videoId'])
-        stats = service.videos().list(part='statistics, snippet', id=item['id']['videoId']).execute()
+        stats = service.videos().list(part='snippet,statistics', id=item['id']['videoId']).execute()
         
         channelId.append(stats['items'][0]['snippet']['channelId']) 
         channelTitle.append(stats['items'][0]['snippet']['channelTitle']) 
@@ -82,16 +82,13 @@ def search_videos_by_keyword(service, **kwargs):
         else:
             commentCount.append(0)
 
+    
     youtube_dict = {'channelId': channelId,'channelTitle': channelTitle,
                     'categoryId':categoryId,'title':title,'videoId':videoId,
                     'viewCount':viewCount,'likeCount':likeCount,'dislikeCount':dislikeCount,
                     'commentCount':commentCount}
  
     return youtube_dict
-
-
-#keyword = 
-#search_videos_by_keyword(service, q=keyword, part='id,snippet', eventType='completed', type='video', order='viewCount')
 
 
 

@@ -16,7 +16,7 @@ def main():
     config = recieveConfig()
     
     
-    query = api.search_videos_by_keyword(api.service, q=config.search, part='id,snippet', eventType='completed', type='video', order='viewCount', maxResults=50)
+    query = api.search_videos_by_keyword(api.service, q=config.search, part='id,snippet', eventType='completed', type='video', order='viewCount', relevanceLanguage = 'en')
 
     print(query)
 
