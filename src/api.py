@@ -38,12 +38,32 @@ def get_authenticated_service():
 
 service = get_authenticated_service()
 
+title = []
+channelId = []
+channelTitle = []
+categoryId = []
+videoId = []
+viewCount = []
+likeCount = []
+dislikeCount = []
+commentCount = []
+favoriteCount = []
+category = []
+tags = []
+videos = []
+
 
 def search_videos_by_keyword(service, **kwargs):
     results = service.search().list(**kwargs).execute()
     for item in results['items']:
-        print('%s - %s' % (item['snippet']['title'], item['id']['videoId']))
-
+        title.append(item['snippet']['title'])
+        videoId.append(item['id']['videoId'])
+        stats = service.videos().list(
+                part='statistics, snippet',
+                id=results['id']['videoId']).execute()
 
 keyword = input('Enter a keyword: ')
 search_videos_by_keyword(service, q=keyword, part='id,snippet', eventType='completed', type='video')
+
+
+
