@@ -15,8 +15,8 @@ def show_all_columns(data):
     return data.columns
 
 
-def show_specified_columns(data, *args):
-    return data[[args]]
+def show_specified_columns(data, word):
+    return data[[word]]
 
 
 

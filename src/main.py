@@ -9,7 +9,8 @@ def recieveConfig():
     parser = argparse.ArgumentParser(description='Youtube data extractor')
     parser.add_argument('-s', '--search', help='Make a Youtube search by doing --search <keyword>.')
     parser.add_argument('-n', '--number', help='Specify maximum number of results to obtain in request', default=25)
-    parser.add_argument('-shc', '--showColumns', help='Prints list of all existing columns in DataFrame (Admitted values: True, False.)', default=False)     
+    parser.add_argument('-sac', '--showAllCols', help='Prints list of all existing columns in DataFrame (Admitted values: True, False.)', default=False)
+    parser.add_argument('-sc','--showColumn', help='Prints one or specified column.', default=False)   
     args = parser.parse_args()
     return args
 
@@ -21,8 +22,12 @@ def main():
     generated_df = clean.dict_to_df(query)
     print(generated_df)
     
-    if config.showColumns:
-        clean.show_all_columns(generated_df)
+    if config.showAllCols:
+        columns  = clean.show_all_columns(generated_df)
+        print(columns)
+    if config.showColumn:
+        specified_cols = clean.show_specified_columns(generated_df, config.showColumn)
+        print(specified_cols)
     else:
         pass
 
