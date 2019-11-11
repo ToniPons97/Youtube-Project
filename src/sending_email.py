@@ -1,7 +1,6 @@
 import os
 from dotenv import load_dotenv
 import ssl, smtplib
-import getpass
 
 load_dotenv()
 
@@ -9,7 +8,7 @@ sender_email = os.getenv("SENDER")
 receiver_email = os.getenv("RECEIVER")
 message = "Python is fucking awsome22222222222222!!!!!!!!!!!!!!!!!!!"
 port = 465  
-password = getpass.getpass("Password: ")
+password = os.getenv("PASSWORD")
 
 context = ssl.create_default_context()
 
