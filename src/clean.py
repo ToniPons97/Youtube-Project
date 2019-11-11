@@ -7,9 +7,9 @@ def dict_to_df(data):
 
      
 
-#def df_to_csv(file_name):
-#    return pd.to_csv(file_name, sep='\t', encoding='utf-8', index=False)
-
+def df_to_csv(data):
+    data.to_csv('../output/youtube.csv', index=False)
+    return "Done"
 
 def show_all_columns(data):
     return data.columns
