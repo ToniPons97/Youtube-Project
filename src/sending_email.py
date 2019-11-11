@@ -1,18 +1,47 @@
 import os
 from dotenv import load_dotenv
-import ssl, smtplib
+import smtplib 
+from email.mime.multipart import MIMEMultipart 
+from email.mime.text import MIMEText 
+from email.mime.base import MIMEBase 
+from email import encoders
 
 load_dotenv()
 
-sender_email = os.getenv("SENDER")
-receiver_email = os.getenv("RECEIVER")
-message = "Python is fucking awsome22222222222222!!!!!!!!!!!!!!!!!!!"
-port = 465  
+fromaddr = os.getenv("SENDER")
+toaddr = os.getenv("RECEIVER")
 password = os.getenv("PASSWORD")
+def send_email_with_file():
+    msg = MIMEMultipart()     
+    msg['From'] = fromaddr 
+    msg['To'] = toaddr     
+    msg['Subject'] = "CSV GENERATED WITH YOUTUBE DATA EXTRACTOR!!!"    
+    body = "Python is AWSOME"
+    
+    msg.attach(MIMEText(body, 'plain')) 
+    
+    filename = "youtube.csv"
+    attachment = open("../output/youtube.csv", "rb") 
+    
+    p = MIMEBase('application', 'octet-stream')     
+    
+    p.set_payload((attachment).read()) 
 
-context = ssl.create_default_context()
+    encoders.encode_base64(p) 
 
-with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
-    server.login(sender_email, password)
-    server.sendmail(sender_email, receiver_email, message)
+    p.add_header('Content-Disposition', "attachment; filename= %s" % filename) 
+    
+    msg.attach(p) 
+    
+    s = smtplib.SMTP('smtp.gmail.com', 587) 
+    
+    s.starttls() 
+    
+    s.login(fromaddr, password) 
+
+    text = msg.as_string() 
+    
+    s.sendmail(fromaddr, toaddr, text) 
+    
+    s.quit()
 
