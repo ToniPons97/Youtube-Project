@@ -4,3 +4,4 @@ Project-Pruebas.ipynb
 .DS_Store
 client_secret.json
 token.pickle
+.env
