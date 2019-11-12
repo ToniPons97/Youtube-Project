@@ -1,3 +1,5 @@
+- ATTENTION: This project was made in three days.
+
 - In this project I set myself to make an accessible and dynamic dataset generator from youtube videos.
 
 - The way this works is by inputing one or more keywords (if you wanna input more than one keyword then it needs to have a + sign between them with no spaces: keyword1+keyword2).
@@ -10,6 +12,6 @@
 
 - the -sac (--showAllCols), -sc (--showColumn), -scvs (--saveCsv), -se (--sendEmail) flags are optional and if ignored they take the default value which is False.
 
-- In the future I hopefully will be making all of these flags more flexible, and also will add more functionality and modularity.
+- In the future (if there is time) I will be making all of these flags more flexible, and also will be adding more functionality and modularity.
 
 Enjoy!
