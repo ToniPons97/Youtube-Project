@@ -8,7 +8,7 @@
 
 - you can tell the program the number of rows to return with the -n flag, if this flag is ignored then the default value is 25 rows.
 
-- the -sac (--showAllCols), -sc (--showColumn), -scvs (--saveCsv), -se (--sendEmail) flags are optional and if ignored they take the default values which is False.
+- the -sac (--showAllCols), -sc (--showColumn), -scvs (--saveCsv), -se (--sendEmail) flags are optional and if ignored they take the default value which is False.
 
 - In the future I hopefully will be making all of these flags more flexible, and also will add more functionality and modularity.
 
