@@ -9,7 +9,7 @@ def dict_to_df(data):
 
 def df_to_csv(data):
     data.to_csv('../output/youtube.csv', index=False)
-    return "Done"
+    return "CSV successfully exported!"
 
 def show_all_columns(data):
     return data.columns

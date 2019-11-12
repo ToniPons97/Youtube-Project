@@ -11,9 +11,9 @@ def recieveConfig():
     parser.add_argument('-s', '--search', help='Make a Youtube search by doing --search <keyword>.')
     parser.add_argument('-n', '--number', help='Specify maximum number of results to obtain in request', default=25)
     parser.add_argument('-sac', '--showAllCols', help='Prints list of all existing columns in DataFrame (Admitted values: True, False.)', default=False)
-    parser.add_argument('-sc','--showColumn', help='Prints one or specified column.', default=False)
-    parser.add_argument('-scsv', '--saveCsv', help='Converts DataFrame to a csv file and stores it in specified path.', default=False)
-    parser.add_argument('-se', '--sendEmail', help='Sends csv generated from data extraction', default=False)
+    parser.add_argument('-sc','--showColumn', help='Prints one or specified column. (Admitted values: True, False.)', default=False)
+    parser.add_argument('-scsv', '--saveCsv', help='Converts DataFrame to a csv file and stores it in specified path. (Admitted values: True, False.)', default=False)
+    parser.add_argument('-se', '--sendEmail', help='Sends csv generated from data extraction. (Admitted values: True, False.)', default=False)
     args = parser.parse_args()
     return args
 
@@ -35,6 +35,7 @@ def main():
         csv = clean.df_to_csv(generated_df)
         print(csv)
     if config.sendEmail:
+        print("Sending Email!")
         se.send_email_with_file()
         print("Email successfuly sent!")
     else:
